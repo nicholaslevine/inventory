@@ -4,4 +4,4 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
-app.get('/', res.render('Hey'));
+app.get('/', res.send('Hey'));

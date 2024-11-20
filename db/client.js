@@ -1,33 +1,45 @@
 const { Client } = require('pg');
 require('dotenv').config();
 
-const SQL = `CREATE TABLE IF NOT EXISTS rackets(
-id SERIAL PRIMARY KEY,
-name TEXT,
-weight INTEGER,
-picture TEXT,
-rating FLOAT, 
-category TEXT
+const createTableSQL = `
+CREATE TABLE IF NOT EXISTS rackets(
+  id SERIAL PRIMARY KEY,
+  name TEXT,
+  weight INTEGER,
+  picture TEXT,
+  rating FLOAT, 
+  category TEXT
 );`;
+
+const insertDataSQL = `
+INSERT INTO rackets (name, weight, picture, rating, category) 
+VALUES ('String', 2, 'picture', 4.5, 'Sigma');
+`;
 
 async function main(){
     const client = new Client({
-        host: process.env.host,
-        user: process.env.user,
-        database: process.env.database,
-        password: process.env.password,
-        port: process.env.port
-    })
-    try{
+        host: process.env.HOST,  
+        user: process.env.USER,
+        database: process.env.DATABASE,
+        password: process.env.PASSWORD,
+        port: process.env.PORT
+    });
+
+    try {
         await client.connect();
-        await client.query(SQL);
-    }
-    catch(e){
-        console.error(e);
-    }
-    finally{
+        console.log('Connected to the database.');
+        
+        await client.query(createTableSQL);
+        console.log('Table created or already exists.');
+
+        await client.query(insertDataSQL);
+        console.log('Data inserted into table.');
+    } catch (e) {
+        console.error('Error executing query:', e.message);  // Log specific error message
+    } finally {
         await client.end();
+        console.log('Connection closed.');
     }
-    
 }
+
 main();
