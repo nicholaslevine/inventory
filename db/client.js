@@ -6,8 +6,9 @@ id SERIAL PRIMARY KEY,
 name TEXT,
 weight INTEGER,
 picture TEXT,
-rating FLOAT
-);`
+rating FLOAT, 
+category TEXT
+);`;
 
 async function main(){
     const client = new Client({
