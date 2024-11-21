@@ -8,15 +8,15 @@
 <body>
     <form action="/create" method="post">
         <label for="name">Name: </label>
-        <input type="text" name="name" id="name">
+        <input type="text" name="name" id="name" required>
         <label for="weight">Weight (grams): </label>
-        <input type="number" name="weight" id="weight">
+        <input type="number" name="weight" id="weight" required min="0" max="300">
         <label for="picture">Picture-url: </label>
-        <input type="text" name="picture" id="picture">
+        <input type="text" name="picture" id="picture" required>
         <label for="rating">Your rating out of 5: </label>
-        <input type="number" name="rating" id="rating" step="0.1">
+        <input type="number" name="rating" id="rating" step="0.1" required min="0" max="5">
         <label for="category">Choose a category: </label>
-        <input type="text" name="category" id="category">
+        <input type="text" name="category" id="category" required>
         <button type="submit">Submit</button>
     </form>
 </body>

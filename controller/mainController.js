@@ -1,5 +1,11 @@
 const queries = require('../db/queries');
 
+const itemValidator = [
+    body("name")
+]
+
+
+
 const mainController = {
     getItems: async (req, res) => {
         const rackets = await queries.getRackets();
@@ -53,9 +59,9 @@ const mainController = {
         });
     },
     updateCategoryPost: async (req, res) => {
-        const {oldCategory} = req.params;
-        const {newCategory} = req.body;
-        await queries.updateCategory(oldCategory, newCategory);
+        const {category} = req.params;
+        const {name} = req.body;
+        await queries.updateCategory(category, name);
         res.redirect('/');
     },
     updateItemPost: async (req, res) => {

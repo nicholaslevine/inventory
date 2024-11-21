@@ -8,15 +8,15 @@
 <body>
     <form action="/update/<%= id %>" method="post">
         <label for="name">Name: </label>
-        <input type="text" name="name" id="name" value="<%= racket.name %>">
+        <input type="text" name="name" id="name" value="<%= racket.name %>" required>
         <label for="weight">Weight (grams): </label>
-        <input type="number" name="weight" id="weight" value="<%= racket.wegiht %>">
+        <input type="number" name="weight" id="weight" value="<%= racket.weight %>" required min="0" max="1000">
         <label for="picture">Picture-url: </label>
-        <input type="text" name="picture" id="picture" value="<%= racket.picture %>">
+        <input type="text" name="picture" id="picture" value="<%= racket.picture %>" required>
         <label for="rating">Your rating out of 5: </label>
-        <input type="number" name="rating" id="rating" value="<%= racket.rating %>">
+        <input type="number" name="rating" id="rating" value="<%= racket.rating %>" required min="0" max="5" step="0.1">
         <label for="category">Choose a category: </label>
-        <input type="text" name="category" id="category" value="<%= racket.category %>">
+        <input type="text" name="category" id="category" value="<%= racket.category %>" required>
         <button type="submit">Submit</button>
     </form>
 </body>

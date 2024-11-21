@@ -7,10 +7,14 @@
 </head>
 <body>
     <% categories.forEach((category) => { %>
+        <% if (category.category) {%>
         <div>
             <%= category.category %>
+            <a href="/category/update/<%= category.category %>">Update</a>
+            <a href="/category/delete/<%= category.category %>">Delete</a>
         </div>
-    <% }) %>
+        <% } %>
+    <% }) %> 
     
 </body>
 </html>
