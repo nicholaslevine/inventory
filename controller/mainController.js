@@ -25,7 +25,8 @@ const mainController = {
     },
     createCategoryPost: async (req, res) => {
         try{
-            await queries.createCategory(req.body);
+            const {name} = req.body
+            await queries.createCategory(name);
             res.redirect('/');
         }
         catch(err){
