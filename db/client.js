@@ -11,10 +11,6 @@ CREATE TABLE IF NOT EXISTS rackets(
   category TEXT
 );`;
 
-const insertDataSQL = `
-INSERT INTO rackets (name, weight, picture, rating, category) 
-VALUES ('String', 2, 'picture', 4.5, 'Sigma');
-`;
 
 async function main(){
     const client = new Client({
@@ -31,9 +27,6 @@ async function main(){
         
         await client.query(createTableSQL);
         console.log('Table created or already exists.');
-
-        await client.query(insertDataSQL);
-        console.log('Data inserted into table.');
     } catch (e) {
         console.error('Error executing query:', e.message);  // Log specific error message
     } finally {

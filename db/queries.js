@@ -2,7 +2,7 @@ const pool = require('./pool');
 
 async function getRackets(){
     const {rows} = await pool.query('SELECT * FROM rackets WHERE name IS NOT NULL;');
-    return rows;
+    console.log(rows);
 }
 async function createRacket(racket){
     await pool.query(`INSERT INTO rackets (name, weight, picture, rating, category) VALUES ($1, $2, $3, $4, $5)`, [racket.name, racket.weight, racket.picture, racket.rating, racket.category]);
@@ -12,7 +12,7 @@ async function getRacket(name){
     return rows;
 }
 async function getCategories(){
-    const {rows} = await pool.query('SELECT category FROM rackets');
+    const {rows} = await pool.query('SELECT DISTINCT category FROM rackets');
     return rows;
 }
 async function createCategory(category){
@@ -33,18 +33,9 @@ async function deleteRacket(id){
 }
 async function deleteCategory(category){
     await pool.query(`DELETE FROM rackets WHERE category = $1`, [category])
-}
-
-const racket = {
-    name: "Nicholas",
-    weight: 23,
-    picture:"picture",
-    rating: 4.5,
-    category: "ex-fapper",
 };
-createRacket(racket);
-const rackets = getRackets();
-console.log(rackets);
+
+
 
 module.exports = {
     getRackets,

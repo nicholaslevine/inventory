@@ -11,7 +11,13 @@
     <% rackets.forEach(racket => { %>
         <div>
             <h1>Name: <%= racket.name %></h1>
-            
+            <img src="<%= racket.picture %>" alt="racket picture">
+            <h3>Weight: <%= racket.weight %></h3>
+            <h3>Rating: <%= racket.rating %></h3>
+            <h3>Category: <%= racket.category %></h3>
+
+            <a href="/update/<% racket.id %>">Update</a>
+            <a href="/delete/<% racket.id %>">Delete</a>
         </div>
     <%}); %>
 </body>
