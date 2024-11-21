@@ -1,4 +1,4 @@
-const { query } = require('../db/pool');
+const { queries } = require('../db/pool');
 const queries = require('../db/queries');
 
 const mainController = {
@@ -39,36 +39,36 @@ const mainController = {
         res.render("create-category");
     },
     updateCategoryGet: (req, res) => {
-        const {category} = req.query;
+        const {category} = req.params;
         res.render("update-category", {
             category: category
         })
     },
     updateItemGet: async (req, res) => {
-        const {id} = req.query;
-        const racket = await query.getRacket(id)
+        const {id} = req.params;
+        const racket = await queries.getRacket(id)
         res.render("update-item", {
             racket: racket,
         });
     },
     updateCategoryPost: async (req, res) => {
-        const {oldCategory} = req.query;
+        const {oldCategory} = req.params;
         const {newCategory} = req.body;
         await queries.updateCategory(oldCategory, newCategory);
         res.redirect('/');
     },
     updateItemPost: async (req, res) => {
-        const {id} = req.query;
+        const {id} = req.params;
         const {newRacket} = req.body
         await queries.updateRacket(id, newRacket);
         res.redirect('/');
     },
     deleteItem: async (req, res) => {
-        const {id} = req.query;
+        const {id} = req.params;
         await queries.deleteRacket(id);    
     },
     deleteCategory: async(req, res) => {
-        const {category} = req.query;
+        const {category} = req.params;
         await queries.deleteCategory(category);
     }
 };

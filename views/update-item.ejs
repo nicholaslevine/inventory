@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Racket</title>
+</head>
+<body>
+    <form action="/update/<%= racket.id %>" method="post">
+        <label for="name">Name: </label>
+        <input type="text" name="name" id="name" value="<%= racket.name %>">
+        <label for="weight">Weight (grams): </label>
+        <input type="number" name="weight" id="weight" value="<%= racket.wegiht %>">
+        <label for="picture">Picture-url: </label>
+        <input type="text" name="picture" id="picture" value="<%= racket.picture %>">
+        <label for="rating">Your rating out of 5: </label>
+        <input type="number" name="rating" id="rating" value="<%= racket.rating %>">
+        <label for="category">Choose a category: </label>
+        <input type="text" name="category" id="category" value="<%= racket.category %>">
+    </form>
+</body>
+</html>
