@@ -71,4 +71,7 @@ const mainController = {
         const {category} = req.query;
         await queries.deleteCategory(category);
     }
-}
+};
+
+
+module.exports = mainController;
