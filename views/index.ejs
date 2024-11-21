@@ -8,7 +8,8 @@
 <body>
     <h1>Main page</h1>
     <p>Below you will see all the items</p>
-    <% rackets.forEach(racket => { %>
+    <% if (rackets) { %>
+        <% rackets.forEach((racket) => { %>
         <div>
             <h1>Name: <%= racket.name %></h1>
             <img src="<%= racket.picture %>" alt="racket picture">
@@ -19,6 +20,9 @@
             <a href="/update/<%= racket.id %>">Update</a>
             <a href="/delete/<%= racket.id %>">Delete</a>
         </div>
-    <%}); %>
+    <% }) %>
+<%} else { %>
+    <h1>Nothing found</h1>
+<%}%>
 </body>
 </html>

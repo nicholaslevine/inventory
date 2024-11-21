@@ -2,7 +2,7 @@ const pool = require('./pool');
 
 async function getRackets(){
     const {rows} = await pool.query('SELECT * FROM rackets WHERE name IS NOT NULL;');
-    console.log(rows);
+    return rows;
 }
 async function createRacket(racket){
     await pool.query(`INSERT INTO rackets (name, weight, picture, rating, category) VALUES ($1, $2, $3, $4, $5)`, [racket.name, racket.weight, racket.picture, racket.rating, racket.category]);
@@ -22,7 +22,7 @@ async function createCategory(category){
 }
 async function updateRacket(id, newRacket){
     await pool.query('UPDATE rackets SET name = $1, weight = $2, picture = $3, rating = $4, category = $5 WHERE id = $6', [
-        newRacket.name, newRacket.weight. newRacket.picture, newRacket.rating, newRacket.category, id
+        newRacket.name, newRacket.weight, newRacket.picture, newRacket.rating, newRacket.category, id
     ])
 }
 async function updateCategory(oldCategory, newCategory){

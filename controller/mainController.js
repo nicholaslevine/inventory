@@ -1,16 +1,15 @@
-const { queries } = require('../db/pool');
 const queries = require('../db/queries');
 
 const mainController = {
     getItems: async (req, res) => {
         const rackets = await queries.getRackets();
-        res.render("index", {
+        return res.render("index", {
             rackets: rackets
         })
     },
     getCategories: async (req, res) => {
         const categories = await queries.getCategories();
-        res.render("categories", {
+        return res.render("categories", {
             categories: categories
         })
     },
@@ -41,15 +40,16 @@ const mainController = {
     },
     updateCategoryGet: (req, res) => {
         const {category} = req.params;
-        res.render("update-category", {
+        return res.render("update-category", {
             category: category
         })
     },
     updateItemGet: async (req, res) => {
         const {id} = req.params;
         const racket = await queries.getRacket(id)
-        res.render("update-item", {
+        return res.render("update-item", {
             racket: racket,
+            id: id,
         });
     },
     updateCategoryPost: async (req, res) => {
@@ -59,18 +59,26 @@ const mainController = {
         res.redirect('/');
     },
     updateItemPost: async (req, res) => {
+        const {name, weight, picture, rating, category} = req.body;
         const {id} = req.params;
-        const {newRacket} = req.body
-        await queries.updateRacket(id, newRacket);
+        await queries.updateRacket(id, {
+            name, 
+            weight,
+            picture,
+            rating,
+            category 
+        });
         res.redirect('/');
     },
     deleteItem: async (req, res) => {
         const {id} = req.params;
         await queries.deleteRacket(id);    
+        res.redirect('/');
     },
     deleteCategory: async(req, res) => {
         const {category} = req.params;
         await queries.deleteCategory(category);
+        res.redirect('/');
     }
 };
 
