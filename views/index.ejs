@@ -3,27 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-index.css">
     <title>Main</title>
 </head>
 <body>
     <%- include("partials/nav.ejs") %>
-    <h1>Main page</h1>
-    <p>Below you will see all the items</p>
-    <% if (rackets) { %>
-        <% rackets.forEach((racket) => { %>
-        <div>
-            <h1>Name: <%= racket.name %></h1>
-            <img src="<%= racket.picture %>" alt="racket picture">
-            <h3>Weight: <%= racket.weight %></h3>
-            <h3>Rating: <%= racket.rating %></h3>
-            <h3>Category: <%= racket.category %></h3>
-
-            <a href="/update/<%= racket.id %>">Update</a>
-            <a href="/delete/<%= racket.id %>">Delete</a>
+    <main>
+        <div class="title">
+            <h1>Main page</h1>
+            <p>Below you will see all the items</p>
         </div>
-    <% }) %>
-<%} else { %>
-    <h1>Nothing found</h1>
-<%}%>
+        <% if (rackets) { %>
+            <div class="rackets">
+            <% rackets.forEach((racket) => { %>
+            <div class="racket">
+                <h1>Name: <%= racket.name %></h1>
+                <img src="<%= racket.picture %>" alt="racket picture">
+                <h3>Weight: <%= racket.weight %> grams</h3>
+                <h3>Rating: <%= racket.rating %>/5</h3>
+                <h3>Category: <%= racket.category %></h3>
+                <div class="buttons">
+                    <a href="/update/<%= racket.id %>">Update</a>
+                    <a href="/delete/<%= racket.id %>">Delete</a>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+    <%} else { %>
+        <h1>Nothing found</h1>
+    <%}%>
+    </main>
 </body>
 </html>

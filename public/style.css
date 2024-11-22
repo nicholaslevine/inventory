@@ -1,0 +1,27 @@
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+nav > ul{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 30px;
+    align-items: center;
+}
+ul > a{
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+}
+ul > a:hover{
+    transform: translateY(5px);
+    transform: scale(1.1);
+}
+nav{
+    border-bottom: 3px solid black;
+    padding: 0 10px;
+    margin-top: -15px;
+    background-color: skyblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

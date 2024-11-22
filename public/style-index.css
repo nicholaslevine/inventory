@@ -1,0 +1,47 @@
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 30px;
+}
+h1, h2, h3, h4, h5, h6, p{
+    padding: 0;
+    margin: 0;
+}
+.title{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-direction: column;
+    padding: 10px;
+}
+.rackets{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 10px;
+}
+.racket{
+    background-color:  green;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+.racket a{
+    background-color: black;
+    color: white;
+    padding: 2px 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 7.5px;
+}
+img{
+    max-height: 300px;
+    max-width: 400px;
+    object-fit: contain;
+}

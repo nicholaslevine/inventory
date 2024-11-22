@@ -6,9 +6,7 @@ const itemsValidation = [
     body("name")
         .trim()
         .notEmpty()
-        .withMessage("Name cannot be empty")
-        .isAlpha()
-        .withMessage("Name must only contain alphabet letters"),
+        .withMessage("Name cannot be empty"),
     body("weight")
         .isInt({min: 0, max: 1000})
         .withMessage("Must be an integer between 1 and 1000"),
@@ -162,7 +160,7 @@ const mainController = {
         async (req, res) => {
         const errors = validationResult(req);
         const {id} = req.params;
-        const racket = query.getRacket(id);
+        const racket = queries.getRacket(id);
         if(!errors.isEmpty()){
             res.render("update-item", {
                 racket: racket,

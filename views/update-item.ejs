@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Update Racket</title>
 </head>
 <body>
     <%- include("partials/nav.ejs") %>
     <%- include("partials/error.ejs") %>
-    <form action="/update/<%= id %>" method="post">
+    <form action="/update/<%= racket.id %>" method="post">
         <label for="name">Name: </label>
         <input type="text" name="name" id="name" value="<%= racket.name %>" required>
         <label for="weight">Weight (grams): </label>
