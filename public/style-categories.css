@@ -1,0 +1,35 @@
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.buttons{
+    display: inline;
+}
+h1{
+    margin-bottom: 0;
+}
+.buttons a{
+    background-color: black;
+    color: white;
+    padding: 2px 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 7.5px;
+}
+.categories{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+.category{
+    background-color: red;
+    color: white;
+    font-size: 20px;
+    padding: 20px 10px;
+    display: flex;
+    gap: 20px;
+    border-radius: 10px;
+}

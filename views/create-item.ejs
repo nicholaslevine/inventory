@@ -4,23 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-create.css">
     <title>Create Racket</title>
 </head>
 <body>
     <%- include("partials/nav.ejs") %>
+    <main>
+    <h1>Create a racket here!</h1>
+    <p>The form to fill out is below</p>
     <%- include("partials/error.ejs") %>
     <form action="/create" method="post">
-        <label for="name">Name: </label>
-        <input type="text" name="name" id="name" required>
-        <label for="weight">Weight (grams): </label>
-        <input type="number" name="weight" id="weight" required min="0" max="1000">
-        <label for="picture">Picture-url: </label>
-        <input type="text" name="picture" id="picture" required>
-        <label for="rating">Your rating out of 5: </label>
-        <input type="number" name="rating" id="rating" step="0.1" required min="0" max="5">
-        <label for="category">Choose a category: </label>
-        <input type="text" name="category" id="category" required>
-        <button type="submit">Submit</button>
+        <div class="pair">
+            <label for="name">Name: </label>
+            <input type="text" name="name" id="name" required>
+        </div>
+        <div class="pair">
+            <label for="weight">Weight (grams): </label>
+            <input type="number" name="weight" id="weight" required min="0" max="1000">
+        </div>
+        <div class="pair">
+            <label for="picture">Picture-url: </label>
+            <input type="text" name="picture" id="picture" required>
+        </div>
+        <div class="pair">
+            <label for="rating">Your rating out of 5: </label>
+            <input type="number" name="rating" id="rating" step="0.1" required min="0" max="5">
+        </div>
+        <div class="pair">
+            <label for="category">Choose a category: </label>
+            <input type="text" name="category" id="category" required>
+        </div>
+        <div class="pair">
+            <button type="submit">Submit</button>
+        </div>
     </form>
+</main>
 </body>
 </html>

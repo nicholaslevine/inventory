@@ -4,19 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-categories.css">
     <title>Categories</title>
 </head>
 <body>
     <%- include("partials/nav.ejs") %>
-    <% categories.forEach((category) => { %>
-        <% if (category.category) {%>
-        <div>
-            <%= category.category %>
-            <a href="/category/update/<%= category.category %>">Update</a>
-            <a href="/category/delete/<%= category.category %>">Delete</a>
-        </div>
-        <% } %>
-    <% }) %> 
+    <main>
+        <h1>Here you can view the categories</h1>
+        <p>Categories are below</p>
+        <div class="categories">
+        <% categories.forEach((category) => { %>
+            <% if (category.category) {%>
+            <div class="category">
+                Category: <%= category.category %>
+                <div class="buttons">
+                    <a href="/category/update/<%= category.category %>">Update</a>
+                    <a href="/category/delete/<%= category.category %>">Delete</a>
+                </div>
+            </div>
+            <% } %>
+        <% }) %> 
+    </div>
+    </main>
     
 </body>
 </html>

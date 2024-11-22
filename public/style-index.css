@@ -30,6 +30,9 @@ h1, h2, h3, h4, h5, h6, p{
     flex-direction: column;
     align-items: center;
     gap: 5px;
+    justify-content: space-between;
+    max-width: 300px;
+    text-align: center;
 }
 .racket a{
     background-color: black;
