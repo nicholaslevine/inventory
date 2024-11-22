@@ -1,3 +1,4 @@
+const { captureRejectionSymbol } = require('events');
 const queries = require('../db/queries');
 const {body, validationResult} = require('express-validator');
 
@@ -36,16 +37,28 @@ const categoryValidation = [
 
 const mainController = {
     getItems: async (req, res) => {
-        const rackets = await queries.getRackets();
-        return res.render("index", {
+        try{
+            const rackets = await queries.getRackets();
+            return res.render("index", {
             rackets: rackets
         })
+        }
+        catch(e){
+            console.log(e);
+            throw e
+        }
     },
     getCategories: async (req, res) => {
-        const categories = await queries.getCategories();
-        return res.render("categories", {
-            categories: categories
-        })
+        try{
+            const categories = await queries.getCategories();
+            return res.render("categories", {
+                categories: categories
+            })
+        }
+        catch(e){
+            console.error(e);
+            throw e;
+        }
     },
     createItemPost: [
         itemsValidation,
@@ -62,6 +75,7 @@ const mainController = {
             }
             catch(err){
                 console.error(err);
+                throw err;
             }
     }],
     createCategoryPost: [
@@ -79,28 +93,49 @@ const mainController = {
                 res.redirect('/');
             }
             catch(err){
-                console.err(err)
+                console.err(err);
+                throw err;
             }
     }],
     createItemGet: (req, res) => {
-        res.render("create-item");
+        try{
+            res.render("create-item");
+        }
+        catch(e){
+            console.error(e);
+        }
     },
     createCategoryGet: (req, res) => {
-        res.render("create-category");
+        try{
+            res.render("create-category");
+        }
+        catch(e){
+            console.error(e);
+        }
     },
     updateCategoryGet: (req, res) => {
-        const {category} = req.params;
-        return res.render("update-category", {
-            category: category
-        })
+        try{
+            const {category} = req.params;
+            return res.render("update-category", {
+                category: category
+            })
+        }
+        catch(e){
+            console.error(e);
+        } 
     },
     updateItemGet: async (req, res) => {
-        const {id} = req.params;
-        const racket = await queries.getRacket(id)
-        return res.render("update-item", {
-            racket: racket,
-            id: id,
-        });
+        try{
+            const {id} = req.params;
+            const racket = await queries.getRacket(id)
+            return res.render("update-item", {
+                racket: racket,
+                id: id,
+            });
+        }
+        catch(e){
+            console.error(e);
+        }
     },
     updateCategoryPost: [
         categoryValidation,
@@ -113,9 +148,14 @@ const mainController = {
                 errors: errors.array()
             });
         }
-        const {name} = req.body;
-        await queries.updateCategory(category, name);
-        res.redirect('/');
+        try{
+            const {name} = req.body;
+            await queries.updateCategory(category, name);
+            res.redirect('/');
+        }
+        catch(e){
+            console.error(e);
+        }
     }],
     updateItemPost: [
         itemsValidation,
@@ -128,25 +168,41 @@ const mainController = {
                 racket: racket,
                 errors: errors.array()
             });;}
-        const {name, weight, picture, rating, category} = req.body;
-        await queries.updateRacket(id, {
-            name, 
-            weight,
-            picture,
-            rating,
-            category 
-        });
-        res.redirect('/');
+
+        try{
+            const {name, weight, picture, rating, category} = req.body;
+            await queries.updateRacket(id, {
+                name, 
+                weight,
+                picture,
+                rating,
+                category 
+            });
+            res.redirect('/');
+        }
+        catch(e){
+            console.error(e);
+        }
     }],
     deleteItem: async (req, res) => {
-        const {id} = req.params;
-        await queries.deleteRacket(id);    
-        res.redirect('/');
+        try{
+            const {id} = req.params;
+            await queries.deleteRacket(id);    
+            res.redirect('/');
+        }
+        catch(e){
+            console.error(e);
+        }
     },
     deleteCategory: async(req, res) => {
-        const {category} = req.params;
-        await queries.deleteCategory(category);
-        res.redirect('/');
+        try{
+            const {category} = req.params;
+            await queries.deleteCategory(category);
+            res.redirect('/');
+        }
+        catch(e){
+            console.error(e);
+        }
     }
 };
 
