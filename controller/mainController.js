@@ -52,7 +52,9 @@ const mainController = {
         async (req, res) => {
             const errors = validationResult(req);
             if(!errors.isEmpty()){
-                res.send("Errors");
+                res.render("create-item", {
+                    errors: errors.array()
+                });
             }
             try{
                 await queries.createRacket(req.body);
@@ -67,7 +69,9 @@ const mainController = {
         async (req, res) => {
             const errors = validationResult(req);
             if(!errors.isEmpty()){
-                res.send("Errors");
+                res.render("create-category", {
+                    errors: errors.array()
+                });
             }
             try{
                 const {name} = req.body
@@ -102,10 +106,13 @@ const mainController = {
         categoryValidation,
     async (req, res) => {
         const errors = validationResult(req);
-        if(!errors.isEmpty()){
-            res.send("Errors");
-        }
         const {category} = req.params;
+        if(!errors.isEmpty()){
+            res.render("update-category", {
+                category: category,
+                errors: errors.array()
+            });
+        }
         const {name} = req.body;
         await queries.updateCategory(category, name);
         res.redirect('/');
@@ -114,10 +121,14 @@ const mainController = {
         itemsValidation,
         async (req, res) => {
         const errors = validationResult(req);
-        if(!errors.isEmpty()){
-            res.send("Errors");}
-        const {name, weight, picture, rating, category} = req.body;
         const {id} = req.params;
+        const racket = query.getRacket(id);
+        if(!errors.isEmpty()){
+            res.render("update-item", {
+                racket: racket,
+                errors: errors.array()
+            });;}
+        const {name, weight, picture, rating, category} = req.body;
         await queries.updateRacket(id, {
             name, 
             weight,
